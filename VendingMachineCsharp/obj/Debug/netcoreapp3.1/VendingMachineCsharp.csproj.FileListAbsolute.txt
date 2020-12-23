@@ -1,0 +1,15 @@
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.exe
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.deps.json
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.runtimeconfig.json
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.runtimeconfig.dev.json
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.dll
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\bin\Debug\netcoreapp3.1\VendingMachineCsharp.pdb
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.csprojAssemblyReference.cache
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.Form1.resources
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.csproj.GenerateResource.cache
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.AssemblyInfoInputs.cache
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.AssemblyInfo.cs
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.csproj.CoreCompileInputs.cache
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.dll
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.pdb
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineCsharp\obj\Debug\netcoreapp3.1\VendingMachineCsharp.genruntimeconfig.cache

@@ -1,0 +1,19 @@
+﻿set identity_insert [VendingMachine] on
+insert into VendingMachine (Id, Name, PricePerSoda) values (1, 'Vm1', '1');
+insert into VendingMachine (Id, Name, PricePerSoda) values (2, 'Vm2', '1');
+set identity_insert [VendingMachine] off
+
+set identity_insert [Product] on
+insert into Product (Id, Name) values (1, 'Sprite');
+insert into Product (Id, Name) values (2, 'Coke');
+set identity_insert [Product] off
+
+set identity_insert [Inventory] on
+insert into Inventory (Id, Qty, ProductId, VendingMachineId) values (1, '12', '1', '1');
+insert into Inventory (Id, Qty, ProductId, VendingMachineId) values (2, '16', '2', '1');
+set identity_insert [Inventory] off
+
+set identity_insert [PurchaseTransactions] on
+insert into PurchaseTransactions (Id, PurchaseTotal, PurchaseQty, Time, ProductId, VendingMachineId) values (1, '1', '1', '2020-12-13', '1', '1');
+insert into PurchaseTransactions (Id, PurchaseTotal, PurchaseQty, Time, ProductId, VendingMachineId) values (2, '1', '1', '2020-12-13', '2', '1');
+set identity_insert [PurchaseTransactions] off

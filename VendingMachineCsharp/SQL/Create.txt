@@ -1,0 +1,58 @@
+﻿USE [master]
+GO
+IF db_id('VendingMachine') IS NULL
+  CREATE DATABASE [VendingMachine]
+GO
+USE [VendingMachine]
+GO
+
+DROP TABLE IF EXISTS [VendingMachine];
+DROP TABLE IF EXISTS [Inventory];
+DROP TABLE IF EXISTS [Product];
+DROP TABLE IF EXISTS [PurchaseTransactions];
+
+CREATE TABLE [VendingMachine] (
+  [Id] INTEGER PRIMARY KEY IDENTITY NOT NULL,
+  [Name] NVARCHAR(255),
+  [PricePerSoda] integer
+)
+GO
+
+CREATE TABLE [Inventory] (
+  [Id] INTEGER PRIMARY KEY IDENTITY NOT NULL,
+  [Qty] integer,
+  [ProductId] integer,
+  [VendingMachineId] integer
+)
+GO
+
+CREATE TABLE [Product] (
+  [Id] INTEGER PRIMARY KEY IDENTITY NOT NULL,
+  [Name] NVARCHAR(255)
+)
+GO
+
+CREATE TABLE [PurchaseTransactions] (
+  [Id] INTEGER PRIMARY KEY IDENTITY NOT NULL,
+  [PurchaseTotal] integer,
+  [PurchaseQty] integer,
+  [Time] datetime,
+  [ProductId] integer,
+  [VendingMachineId] integer
+)
+GO
+
+ALTER TABLE [Inventory] ADD FOREIGN KEY ([VendingMachineId]) REFERENCES [VendingMachine] ([Id])
+GO
+
+ALTER TABLE [PurchaseTransactions] ADD FOREIGN KEY ([VendingMachineId]) REFERENCES [VendingMachine] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [PurchaseTransactions] ADD FOREIGN KEY ([ProductId]) REFERENCES [Product] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [Inventory] ADD FOREIGN KEY ([ProductId]) REFERENCES [Product] ([Id])
+ON DELETE CASCADE
+GO
