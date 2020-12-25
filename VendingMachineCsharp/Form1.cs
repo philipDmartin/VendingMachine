@@ -36,6 +36,17 @@ namespace VendingMachineCsharp
             //MessageBox.Show(myVendingMachine);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please Insert Quarters");
+
+            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+
+            myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.NoQuarter;
+            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
            
