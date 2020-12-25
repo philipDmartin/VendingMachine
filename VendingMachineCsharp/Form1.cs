@@ -22,18 +22,13 @@ namespace VendingMachineCsharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Now you can select a sode");
-
-            //VendingMachine myVendingMachine = new VendingMachine();
+            MessageBox.Show("Now you can select a soda");
             
             MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
-
-            //MessageBox.Show(myVendingMachine.Name);
 
             myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.HasQuarter;
             MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
 
-            //MessageBox.Show(myVendingMachine);
         }
 
         private void button2_Click(object sender, EventArgs e)
