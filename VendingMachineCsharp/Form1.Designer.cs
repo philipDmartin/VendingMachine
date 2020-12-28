@@ -35,11 +35,13 @@ namespace VendingMachineCsharp
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.textBoxVMViewer = new System.Windows.Forms.TextBox();
+            this.textBoxVMStateViewer = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1236, 411);
+            this.button1.Location = new System.Drawing.Point(1236, 295);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(227, 46);
             this.button1.TabIndex = 0;
@@ -49,7 +51,7 @@ namespace VendingMachineCsharp
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1236, 531);
+            this.button2.Location = new System.Drawing.Point(1236, 426);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(227, 46);
             this.button2.TabIndex = 1;
@@ -59,7 +61,7 @@ namespace VendingMachineCsharp
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(745, 705);
+            this.button3.Location = new System.Drawing.Point(653, 752);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 139);
             this.button3.TabIndex = 2;
@@ -69,7 +71,7 @@ namespace VendingMachineCsharp
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(965, 705);
+            this.button4.Location = new System.Drawing.Point(886, 752);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(135, 139);
             this.button4.TabIndex = 3;
@@ -79,7 +81,7 @@ namespace VendingMachineCsharp
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1236, 669);
+            this.button5.Location = new System.Drawing.Point(1236, 621);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(227, 46);
             this.button5.TabIndex = 4;
@@ -97,11 +99,30 @@ namespace VendingMachineCsharp
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // textBoxVMViewer
+            // 
+            this.textBoxVMViewer.Location = new System.Drawing.Point(594, 279);
+            this.textBoxVMViewer.Multiline = true;
+            this.textBoxVMViewer.Name = "textBoxVMViewer";
+            this.textBoxVMViewer.Size = new System.Drawing.Size(601, 388);
+            this.textBoxVMViewer.TabIndex = 6;
+            this.textBoxVMViewer.TextChanged += new System.EventHandler(this.textBoxVMViewer_TextChanged);
+            // 
+            // textBoxVMStateViewer
+            // 
+            this.textBoxVMStateViewer.Location = new System.Drawing.Point(695, 177);
+            this.textBoxVMStateViewer.Name = "textBoxVMStateViewer";
+            this.textBoxVMStateViewer.Size = new System.Drawing.Size(364, 39);
+            this.textBoxVMStateViewer.TabIndex = 7;
+            this.textBoxVMStateViewer.TextChanged += new System.EventHandler(this.textBoxVMStateViewer_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2554, 1610);
+            this.ClientSize = new System.Drawing.Size(1840, 1378);
+            this.Controls.Add(this.textBoxVMStateViewer);
+            this.Controls.Add(this.textBoxVMViewer);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -112,6 +133,7 @@ namespace VendingMachineCsharp
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -123,6 +145,8 @@ namespace VendingMachineCsharp
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBoxVMViewer;
+        private System.Windows.Forms.TextBox textBoxVMStateViewer;
     }
 }
 

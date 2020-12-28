@@ -24,68 +24,81 @@ namespace VendingMachineCsharp
             myProduct = new Product();
             myInventory = new Inventory();
             myPurchaseTransactions = new PurchaseTransactions();
+            textBoxVMViewer.Text = ("Please Inerst Quarter");
+            textBoxVMStateViewer.Text = ("Your Current State");
         }
 
         //INSERT
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Now you can select a soda");
-            
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMViewer.Text = ("Now you can select a soda");
+
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
             myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.HasQuarter;
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
         }
 
         //EJECT
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Please Insert Quarters");
+            textBoxVMViewer.Text = ("Please Insert Quarters");
 
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
             myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.NoQuarter;
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
         }
 
         //SPRITE
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You Have Selected Sprite, Now Despensing");
+            textBoxVMViewer.Text = ("You Have Selected Sprite, Now Despensing");
 
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
             myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.Sold;
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
         }
 
         //COKE
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You Have Selected Coke, Now Despensing");
+            textBoxVMViewer.Text = ("You Have Selected Coke, Now Despensing");
 
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
             myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.Sold;
-            MessageBox.Show(myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
 
         }
 
         //INVENTORY
         private void button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Here Is Your Inventory");
+            textBoxVMViewer.Text = ("Here Is Your Inventory");
+            
         }
 
         //PURCHASE TRANSACTIONS
         private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Here Is Your Purchase Transaction History");
+            textBoxVMViewer.Text = ("Here Is Your Purchase Transaction History");
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxVMViewer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxVMStateViewer_TextChanged(object sender, EventArgs e)
         {
 
         }

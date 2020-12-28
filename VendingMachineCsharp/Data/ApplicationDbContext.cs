@@ -14,6 +14,7 @@ namespace VendingMachineCsharp.Data
         public DbSet<Inventory> Inventory { get; set; }
         public DbSet<PurchaseTransactions> PurchaseTransactions { get; set; }
         public DbSet<VendingMachine> VendingMachine { get; set; }
+
         //public DbSet<VendingMachineStateEnum> VendingMachineStateEnum { get; set; }
     }
 }
