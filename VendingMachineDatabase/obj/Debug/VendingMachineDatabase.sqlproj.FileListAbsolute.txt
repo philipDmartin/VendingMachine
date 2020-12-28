@@ -1,0 +1,10 @@
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\bin\Debug\VendingMachineDatabase.dacpac
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\bin\Debug\VendingMachineDatabase.dll
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\bin\Debug\VendingMachineDatabase.pdb
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\VendingMachineDatabase.sqlprojAssemblyReference.cache
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\Model.xml
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\refactor.xml
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\postdeploy.sql
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\predeploy.sql
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\VendingMachineDatabase.dll
+C:\Users\phili\source\Forms\VendingMachineCsharp\VendingMachineDatabase\obj\Debug\VendingMachineDatabase.pdb

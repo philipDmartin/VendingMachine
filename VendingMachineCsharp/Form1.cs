@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace VendingMachineCsharp
 {
@@ -26,6 +27,35 @@ namespace VendingMachineCsharp
             myPurchaseTransactions = new PurchaseTransactions();
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
+
+            string constring = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
+            string Query = "select * from Product";
+
+            SqlConnection conDataBase = new SqlConnection(constring);
+            SqlCommand cmdDataBase = new SqlCommand(Query, conDataBase);
+            SqlDataReader myReader;
+            try
+            {
+                conDataBase.Open();
+                myReader = cmdDataBase.ExecuteReader();
+                myReader.Read();
+                MessageBox.Show(myReader.GetSqlValue(0).ToString()+ " " + myReader.GetSqlValue(1).ToString());
+                myReader.Read();
+                MessageBox.Show(myReader.GetSqlValue(0).ToString() + " " + myReader.GetSqlValue(1).ToString());
+                while (myReader.Read())
+                {
+                }
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+
+
+
+            
+            
         }
 
         //INSERT
