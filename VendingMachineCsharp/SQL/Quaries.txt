@@ -1,0 +1,18 @@
+﻿1.return inventory with the product name
+
+SELECT  Qty,  
+        p.[Name] AS ProductName,
+        VendingMachineId
+FROM Inventory i
+JOIN Product p ON p.Id = p.Id
+
+2.return transactions with the product name and vending machine name
+
+SELECT PurchaseTotal, 
+       PurchaseQty, 
+       Time, 
+       p.[Name] AS ProductName, 
+       v.[Name] AS VendingMachineName 
+FROM PurchaseTransactions pt
+JOIN Product p ON p.Id = p.Id
+JOIN VendingMachine v ON v.Id = v.Id

@@ -19,5 +19,7 @@ namespace VendingMachineCsharp
         public Product Product { get; set; }
 
         public int VendingMachineId { get; set; }
+
+        public VendingMachine VendingMachine { get; set; }
     }
 }

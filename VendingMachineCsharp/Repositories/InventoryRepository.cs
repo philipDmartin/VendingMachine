@@ -26,8 +26,10 @@ namespace VendingMachineCsharp.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Id, Qty, ProductId, VendingMachineId 
-                                        FROM Inventory";
+                    cmd.CommandText = @"SELECT Qty,  
+                                               p.[Name] AS ProductName
+                                        FROM Inventory i
+                                        JOIN Product p ON p.Id = p.Id;";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<Inventory>();
@@ -37,8 +39,11 @@ namespace VendingMachineCsharp.Repositories
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Qty = reader.GetInt32(reader.GetOrdinal("Qty")),
-                            ProductId = reader.GetInt32(reader.GetOrdinal("BeanVarietyId")),
-                            VendingMachineId = reader.GetInt32(reader.GetOrdinal("BeanVarietyId"))
+                            Product = new Product
+                            {
+                                Name = reader.GetString(reader.GetOrdinal("ProductName"))
+                            },
+                            VendingMachineId = reader.GetInt32(reader.GetOrdinal("VendingMachineId"))
                         };
                         types.Add(type);
                     }

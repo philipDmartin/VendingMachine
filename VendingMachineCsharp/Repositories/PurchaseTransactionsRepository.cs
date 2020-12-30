@@ -26,8 +26,14 @@ namespace VendingMachineCsharp.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Id, PurchaseTotal, PurchaseQty, Time, ProductId, VendingMachineId 
-                                        FROM PurchaseTransactions";
+                    cmd.CommandText = @"SELECT PurchaseTotal, 
+                                               PurchaseQty, 
+                                               Time, 
+                                               p.[Name] AS ProductName, 
+                                               v.[Name] AS VendingMachineName 
+                                        FROM PurchaseTransactions pt
+                                        JOIN Product p ON p.Id = p.Id
+                                        JOIN VendingMachine v ON v.Id = v.Id";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<PurchaseTransactions>();
@@ -39,8 +45,14 @@ namespace VendingMachineCsharp.Repositories
                             PurchaseTotal = reader.GetInt32(reader.GetOrdinal("PurchaseTotal")),
                             PurchaseQty = reader.GetInt32(reader.GetOrdinal("PurchaseQty")),
                             Time = reader.GetDateTime(reader.GetOrdinal("Time")),
-                            ProductId = reader.GetInt32(reader.GetOrdinal("BeanVarietyId")),
-                            VendingMachineId = reader.GetInt32(reader.GetOrdinal("BeanVarietyId"))
+                            Product = new Product
+                            {
+                                Name = reader.GetString(reader.GetOrdinal("ProductName"))
+                            },
+                            VendingMachine = new VendingMachine
+                            {
+                                Name = reader.GetString(reader.GetOrdinal("VendingMachineName"))
+                            },
                         };
                         types.Add(type);
                     }
