@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using VendingMachineCsharp.Repositories;
 
 namespace VendingMachineCsharp
 {
@@ -15,16 +16,17 @@ namespace VendingMachineCsharp
     {
         VendingMachine myVendingMachine;
         Product myProduct;
-        Inventory myInventory;
         PurchaseTransactions myPurchaseTransactions;
+        Inventory myInventory;
 
         public Form1()
         {
             InitializeComponent();
             myVendingMachine = new VendingMachine();
             myProduct = new Product();
-            myInventory = new Inventory();
             myPurchaseTransactions = new PurchaseTransactions();
+            myInventory = new Inventory();
+
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
 
@@ -38,10 +40,10 @@ namespace VendingMachineCsharp
             {
                 conDataBase.Open();
                 myReader = cmdDataBase.ExecuteReader();
-                myReader.Read();
-                MessageBox.Show(myReader.GetSqlValue(0).ToString()+ " " + myReader.GetSqlValue(1).ToString());
-                myReader.Read();
-                MessageBox.Show(myReader.GetSqlValue(0).ToString() + " " + myReader.GetSqlValue(1).ToString());
+                //myReader.Read();
+                //MessageBox.Show(myReader.GetSqlValue(0).ToString()+ " " + myReader.GetSqlValue(1).ToString());
+                //myReader.Read();
+                //MessageBox.Show(myReader.GetSqlValue(0).ToString() + " " + myReader.GetSqlValue(1).ToString());
                 while (myReader.Read())
                 {
                 }
@@ -50,12 +52,6 @@ namespace VendingMachineCsharp
             {
                 MessageBox.Show(ex.Message);
             }
-            
-
-
-
-            
-            
         }
 
         //INSERT
@@ -109,7 +105,6 @@ namespace VendingMachineCsharp
         private void button5_Click(object sender, EventArgs e)
         {
             textBoxVMViewer.Text = ("Here Is Your Inventory");
-            
         }
 
         //PURCHASE TRANSACTIONS
