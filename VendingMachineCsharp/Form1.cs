@@ -20,6 +20,7 @@ namespace VendingMachineCsharp
         Inventory myInventory;
 
         InventoryRepository myInventoryRepository;
+        List<Inventory> myInventoryList;
 
 
         public Form1()
@@ -30,7 +31,8 @@ namespace VendingMachineCsharp
             myPurchaseTransactions = new PurchaseTransactions();
             myInventory = new Inventory();
 
-            //myInventoryRepository = new InventoryRepository();
+            myInventoryRepository = new InventoryRepository();
+            myInventoryList = myInventoryRepository.GetAll();
 
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
@@ -109,8 +111,16 @@ namespace VendingMachineCsharp
         //INVENTORY
         private void button5_Click(object sender, EventArgs e)
         {
-            textBoxVMViewer.Text = ("Here Is Your Inventory");
-            //VendingMachineCsharp.Repositories.InventoryRepository.GetAll();
+
+            string strAllInventory = "";
+
+            foreach (var inventory in myInventoryList)
+            {
+                strAllInventory += inventory.Product.Name + " " + inventory.Qty;
+                strAllInventory += Environment.NewLine;
+            }
+
+            textBoxVMViewer.Text = strAllInventory;
         }
 
         //PURCHASE TRANSACTIONS

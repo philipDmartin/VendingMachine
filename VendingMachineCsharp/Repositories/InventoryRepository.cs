@@ -9,11 +9,13 @@ namespace VendingMachineCsharp.Repositories
     public class InventoryRepository
     {
         private readonly string _connectionString;
-        public InventoryRepository(IConfiguration configuration)
+        public InventoryRepository()//IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;");
-        }
+            //_connectionString = configuration.GetConnectionString("server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;");
+            _connectionString = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
 
+        }
+        
         public SqlConnection Connection
         {
             get { return new SqlConnection(_connectionString); }
@@ -27,9 +29,10 @@ namespace VendingMachineCsharp.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT Qty,  
-                                               p.[Name] AS ProductName
+                                               p.[Name] AS ProductName,
+                                               VendingMachineId
                                         FROM Inventory i
-                                        JOIN Product p ON p.Id = p.Id;";
+                                        JOIN Product p ON p.Id = i.Id;";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<Inventory>();
@@ -37,7 +40,7 @@ namespace VendingMachineCsharp.Repositories
                     {
                         var type = new Inventory()
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            //Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Qty = reader.GetInt32(reader.GetOrdinal("Qty")),
                             Product = new Product
                             {

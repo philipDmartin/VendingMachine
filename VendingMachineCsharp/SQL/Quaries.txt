@@ -4,7 +4,7 @@ SELECT  Qty,
         p.[Name] AS ProductName,
         VendingMachineId
 FROM Inventory i
-JOIN Product p ON p.Id = p.Id
+JOIN Product p ON p.Id = i.Id
 
 2.return transactions with the product name and vending machine name
 
