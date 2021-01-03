@@ -6,12 +6,11 @@ using System.Text;
 
 namespace VendingMachineCsharp.Repositories
 {
-    public class InventoryRepository
+    public class InventoryService
     {
         private readonly string _connectionString;
-        public InventoryRepository()//IConfiguration configuration)
+        public InventoryService()
         {
-            //_connectionString = configuration.GetConnectionString("server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;");
             _connectionString = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
 
         }
@@ -28,7 +27,8 @@ namespace VendingMachineCsharp.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Qty,  
+                    cmd.CommandText = @"SELECT
+                                               Qty,  
                                                p.[Name] AS ProductName,
                                                VendingMachineId
                                         FROM Inventory i
@@ -54,6 +54,28 @@ namespace VendingMachineCsharp.Repositories
                     reader.Close();
 
                     return types;
+                }
+            }
+        }
+
+        public void Update(Inventory type)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Inventory 
+                           SET Qty = @qty, 
+                               Product = @product
+                               VendingMachineId = @vendingMachineId
+                         WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@qty", type.Qty);
+                    cmd.Parameters.AddWithValue("@product", type.Product);
+                    cmd.Parameters.AddWithValue("@vendingMachineId", type.VendingMachineId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

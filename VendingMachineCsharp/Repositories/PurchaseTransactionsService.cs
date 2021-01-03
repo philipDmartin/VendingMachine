@@ -6,12 +6,12 @@ using System.Text;
 
 namespace VendingMachineCsharp.Repositories
 {
-    public class PurchaseTransactionsRepository
+    public class PurchaseTransactionsService
     {
         private readonly string _connectionString;
-        public PurchaseTransactionsRepository(IConfiguration configuration)
+        public PurchaseTransactionsService()//IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;");
+            _connectionString = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
         }
 
         public SqlConnection Connection
@@ -26,14 +26,15 @@ namespace VendingMachineCsharp.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT PurchaseTotal, 
+                    cmd.CommandText = @"SELECT 
+                                               PurchaseTotal, 
                                                PurchaseQty, 
                                                Time, 
                                                p.[Name] AS ProductName, 
                                                v.[Name] AS VendingMachineName 
                                         FROM PurchaseTransactions pt
-                                        JOIN Product p ON p.Id = p.Id
-                                        JOIN VendingMachine v ON v.Id = v.Id";
+                                        JOIN Product p ON p.Id = pt.Id
+                                        JOIN VendingMachine v ON v.Id = pt.Id";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<PurchaseTransactions>();
@@ -41,7 +42,7 @@ namespace VendingMachineCsharp.Repositories
                     {
                         var type = new PurchaseTransactions()
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            //Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             PurchaseTotal = reader.GetInt32(reader.GetOrdinal("PurchaseTotal")),
                             PurchaseQty = reader.GetInt32(reader.GetOrdinal("PurchaseQty")),
                             Time = reader.GetDateTime(reader.GetOrdinal("Time")),
@@ -60,6 +61,32 @@ namespace VendingMachineCsharp.Repositories
                     reader.Close();
 
                     return types;
+                }
+            }
+        }
+
+        public void Update(PurchaseTransactions type)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE PurchaseTransactions 
+                           SET PurchaseTotal = @purchaseTotal
+                               PurchaseQty = @purchaseQty, 
+                               Time = @time
+                               ProductId = @productId
+                               VendingMachineId = @vendingMachineId
+                         WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@PurchaseTotal", type.PurchaseTotal);
+                    cmd.Parameters.AddWithValue("@PurchaseQty", type.PurchaseQty);
+                    cmd.Parameters.AddWithValue("@Time", type.Time);
+                    cmd.Parameters.AddWithValue("@ProductId", type.ProductId);
+                    cmd.Parameters.AddWithValue("@vendingMachineId", type.VendingMachineId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

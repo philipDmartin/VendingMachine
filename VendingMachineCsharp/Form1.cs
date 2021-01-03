@@ -14,25 +14,32 @@ namespace VendingMachineCsharp
 {
     public partial class Form1 : Form
     {
-        VendingMachine myVendingMachine;
+        //public VendingMachine Program.myVendingMachine;
         Product myProduct;
         PurchaseTransactions myPurchaseTransactions;
         Inventory myInventory;
 
-        InventoryRepository myInventoryRepository;
+        InventoryService myInventoryService;
         List<Inventory> myInventoryList;
 
+        PurchaseTransactionsService myPurchaseTransactionsService;
+        List<PurchaseTransactions> myPurchaseTransactionsList;
 
         public Form1()
         {
             InitializeComponent();
-            myVendingMachine = new VendingMachine();
+            //Program.myVendingMachine = new VendingMachine();
             myProduct = new Product();
             myPurchaseTransactions = new PurchaseTransactions();
             myInventory = new Inventory();
 
-            myInventoryRepository = new InventoryRepository();
-            myInventoryList = myInventoryRepository.GetAll();
+            myInventoryService = new InventoryService();
+            myInventoryList = myInventoryService.GetAll();
+            //myInventoryList = myInventoryRepository.Delete(int);
+
+            myPurchaseTransactionsService = new PurchaseTransactionsService();
+            myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
+            //myPurchaseTransactionsList = myPurchaseTransactionsService.Add(PurchaseTransactions);
 
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
@@ -47,10 +54,7 @@ namespace VendingMachineCsharp
             {
                 conDataBase.Open();
                 myReader = cmdDataBase.ExecuteReader();
-                //myReader.Read();
-                //MessageBox.Show(myReader.GetSqlValue(0).ToString()+ " " + myReader.GetSqlValue(1).ToString());
-                //myReader.Read();
-                //MessageBox.Show(myReader.GetSqlValue(0).ToString() + " " + myReader.GetSqlValue(1).ToString());
+               
                 while (myReader.Read())
                 {
                 }
@@ -66,11 +70,11 @@ namespace VendingMachineCsharp
         {
             textBoxVMViewer.Text = ("Now you can select a soda");
 
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
 
-            myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.HasQuarter;
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            Program.ManageState(VendingMachineStateEnum.HasQuarter);
 
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
         }
 
         //EJECT
@@ -78,22 +82,43 @@ namespace VendingMachineCsharp
         {
             textBoxVMViewer.Text = ("Please Insert Quarters");
 
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
-
-            myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.NoQuarter;
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
+            Program.ManageState(VendingMachineStateEnum.NoQuarter);
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
 
         }
 
         //SPRITE
+        //private int i;
         private void button3_Click(object sender, EventArgs e)
         {
             textBoxVMViewer.Text = ("You Have Selected Sprite, Now Despensing");
 
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
 
-            myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.Sold;
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            Program.ManageState(VendingMachineStateEnum.Sold);
+
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
+
+            //i--;
+
+            //1.DECREMENT QTY NUMBER BY 1 WHEN BUTTON CLICKED
+
+            //string qtyInventory = "";
+
+            //foreach (var inventory in myInventoryList)
+            //{
+            //    qtyInventory += --inventory.Qty;
+
+            //}
+
+            //textBoxVMViewer.Text = qtyInventory.ToString();
+
+            //textBoxVMStateViewer.Text = i.ToString();
+
+            //2.ADD A NEW TRANSACTION WHEN BUTTON CLICKED
+
+            //myPurchaseTransactionsList.Add(PurchaseTransactions type);
         }
 
         //COKE
@@ -101,10 +126,11 @@ namespace VendingMachineCsharp
         {
             textBoxVMViewer.Text = ("You Have Selected Coke, Now Despensing");
 
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
 
-            myVendingMachine.VendingMachineStateEnum = VendingMachineStateEnum.Sold;
-            textBoxVMStateViewer.Text = (myVendingMachine.VendingMachineStateEnum.ToString());
+            Program.ManageState(VendingMachineStateEnum.Sold);
+
+            textBoxVMStateViewer.Text = (Program.programState.ToString());
 
         }
 
@@ -126,7 +152,15 @@ namespace VendingMachineCsharp
         //PURCHASE TRANSACTIONS
         private void button6_Click(object sender, EventArgs e)
         {
-            textBoxVMViewer.Text = ("Here Is Your Purchase Transaction History");
+            string strAllPurchaseTransactions = "";
+
+            foreach (var purchaseTransactions in myPurchaseTransactionsList)
+            {
+                strAllPurchaseTransactions += "Quarters Amount" + " " + purchaseTransactions.PurchaseTotal + ", " + "Poduct" + " " + purchaseTransactions.Product.Name + ", " + "Qty" + " " + purchaseTransactions.PurchaseQty + ", " + "Timestamp" + " " + purchaseTransactions.Time + ", " + "Machine" + " " + purchaseTransactions.VendingMachine.Name;
+                strAllPurchaseTransactions += Environment.NewLine;
+            }
+
+            textBoxVMViewer.Text = strAllPurchaseTransactions;
         }
 
         private void Form1_Load(object sender, EventArgs e)

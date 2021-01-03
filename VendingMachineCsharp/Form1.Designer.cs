@@ -94,6 +94,7 @@ namespace VendingMachineCsharp
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Location = new System.Drawing.Point(1205, 798);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(300, 46);
@@ -107,6 +108,7 @@ namespace VendingMachineCsharp
             this.textBoxVMViewer.Location = new System.Drawing.Point(594, 279);
             this.textBoxVMViewer.Multiline = true;
             this.textBoxVMViewer.Name = "textBoxVMViewer";
+            this.textBoxVMViewer.ReadOnly = true;
             this.textBoxVMViewer.Size = new System.Drawing.Size(601, 388);
             this.textBoxVMViewer.TabIndex = 6;
             this.textBoxVMViewer.TextChanged += new System.EventHandler(this.textBoxVMViewer_TextChanged);
@@ -115,6 +117,7 @@ namespace VendingMachineCsharp
             // 
             this.textBoxVMStateViewer.Location = new System.Drawing.Point(695, 177);
             this.textBoxVMStateViewer.Name = "textBoxVMStateViewer";
+            this.textBoxVMStateViewer.ReadOnly = true;
             this.textBoxVMStateViewer.Size = new System.Drawing.Size(364, 39);
             this.textBoxVMStateViewer.TabIndex = 7;
             this.textBoxVMStateViewer.TextChanged += new System.EventHandler(this.textBoxVMStateViewer_TextChanged);
