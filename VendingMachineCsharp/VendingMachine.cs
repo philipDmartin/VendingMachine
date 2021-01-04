@@ -11,7 +11,5 @@ namespace VendingMachineCsharp
         public string Name { get; set; }
 
         public int PricePerSoda { get; set; }
-
-        //public VendingMachineStateEnum VendingMachineStateEnum { get; set; }
     }
 }

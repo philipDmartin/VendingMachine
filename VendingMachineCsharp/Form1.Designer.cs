@@ -40,59 +40,67 @@ namespace VendingMachineCsharp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1538, 435);
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.button1.Location = new System.Drawing.Point(1547, 279);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 81);
+            this.button1.Size = new System.Drawing.Size(227, 235);
             this.button1.TabIndex = 0;
             this.button1.Text = "Insert Quarters";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(1538, 786);
+            this.button2.Location = new System.Drawing.Point(1547, 777);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(227, 88);
+            this.button2.Size = new System.Drawing.Size(227, 233);
             this.button2.TabIndex = 1;
             this.button2.Text = "Eject Quarters";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.SystemColors.Control;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(480, 1050);
+            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.Location = new System.Drawing.Point(448, 1050);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(133, 139);
+            this.button3.Size = new System.Drawing.Size(289, 227);
             this.button3.TabIndex = 2;
             this.button3.Text = "Sprite";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(1110, 1050);
+            this.button4.Location = new System.Drawing.Point(999, 1050);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 139);
+            this.button4.Size = new System.Drawing.Size(268, 227);
             this.button4.TabIndex = 3;
             this.button4.Text = "Coke";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1465, 1295);
+            this.button6.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.button6.Location = new System.Drawing.Point(1465, 1251);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(300, 46);
+            this.button6.Size = new System.Drawing.Size(300, 90);
             this.button6.TabIndex = 5;
             this.button6.Text = "Transaction History";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBoxVMViewer
             // 
+            this.textBoxVMViewer.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBoxVMViewer.Location = new System.Drawing.Point(177, 279);
             this.textBoxVMViewer.Multiline = true;
             this.textBoxVMViewer.Name = "textBoxVMViewer";
@@ -104,17 +112,19 @@ namespace VendingMachineCsharp
             // 
             // textBoxVMStateViewer
             // 
-            this.textBoxVMStateViewer.Location = new System.Drawing.Point(695, 177);
+            this.textBoxVMStateViewer.Location = new System.Drawing.Point(685, 177);
             this.textBoxVMStateViewer.Name = "textBoxVMStateViewer";
             this.textBoxVMStateViewer.ReadOnly = true;
             this.textBoxVMStateViewer.Size = new System.Drawing.Size(364, 39);
             this.textBoxVMStateViewer.TabIndex = 7;
+            this.textBoxVMStateViewer.Visible = false;
             this.textBoxVMStateViewer.TextChanged += new System.EventHandler(this.textBoxVMStateViewer_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1840, 1378);
             this.Controls.Add(this.textBoxVMStateViewer);
             this.Controls.Add(this.textBoxVMViewer);
@@ -142,4 +152,3 @@ namespace VendingMachineCsharp
         private System.Windows.Forms.TextBox textBoxVMStateViewer;
     }
 }
-

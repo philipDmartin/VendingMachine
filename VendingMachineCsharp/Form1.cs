@@ -14,35 +14,20 @@ namespace VendingMachineCsharp
 {
     public partial class Form1 : Form
     {
-        //public VendingMachine Program.myVendingMachine;
-        Product myProduct;
-        PurchaseTransactions myPurchaseTransactions;
-        Inventory myInventory;
-
         InventoryService myInventoryService;
         List<Inventory> myInventoryList;
-
-        //PurchaseTransactionsService myPurchaseTransactionsService;
-        //List<PurchaseTransactions> myPurchaseTransactionsList;
 
         public Form1()
         {
             InitializeComponent();
-            //Program.myVendingMachine = new VendingMachine();
-            myProduct = new Product();
-            myPurchaseTransactions = new PurchaseTransactions();
-            myInventory = new Inventory();
 
             myInventoryService = new InventoryService();
             myInventoryList = myInventoryService.GetAll();
-            //myInventoryList = myInventoryRepository.Delete(int);
-
-            //myPurchaseTransactionsService = new PurchaseTransactionsService();
-            //myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
 
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
 
+            //Connection to SQL Database
             string constring = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
             string Query = "select * from Product";
 
@@ -56,9 +41,10 @@ namespace VendingMachineCsharp
                
                 while (myReader.Read())
                 {
-                }
 
-            }catch(Exception ex)
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -70,9 +56,7 @@ namespace VendingMachineCsharp
             textBoxVMViewer.Text = ("Now you can select a soda");
 
             textBoxVMStateViewer.Text = (Program.programState.ToString());
-
             Program.ManageState(VendingMachineStateEnum.HasQuarter);
-
             textBoxVMStateViewer.Text = (Program.programState.ToString());
         }
 
@@ -88,7 +72,6 @@ namespace VendingMachineCsharp
         }
 
         //SPRITE
-        //private int i;
         private void button3_Click(object sender, EventArgs e)
         {
             InventoryService myInventoryService;
@@ -102,15 +85,15 @@ namespace VendingMachineCsharp
             myPurchaseTransactionsService = new PurchaseTransactionsService();
             myPurchaseTransactions = new PurchaseTransactions();
 
-            myPurchaseTransactions.PurchaseTotal = 1; //1 is a quarter
-            myPurchaseTransactions.ProductId = 1; //Id for sprite
+            myPurchaseTransactions.PurchaseTotal = 1; //1 is a Quarter
+            myPurchaseTransactions.ProductId = 1; //Id for Sprite
             myPurchaseTransactions.PurchaseQty = 1;
             myPurchaseTransactions.Time = DateTime.Now;
             myPurchaseTransactions.VendingMachineId = 1; //Id for Vh1
 
             mySpriteInventory = myInventoryService.Get(1);
 
-            //Decrement inventory qty 
+            //Decrement Inventory Qty 
             mySpriteInventory.Qty = (mySpriteInventory.Qty - 1);
 
             //Start a C# transaction later
@@ -158,22 +141,16 @@ namespace VendingMachineCsharp
             myInventoryService.Update(myCokeInventory);
 
             //End C# transaction here
-
-
             textBoxVMViewer.Text = ("You Have Selected Coke, Now Despensing");
 
             textBoxVMStateViewer.Text = (Program.programState.ToString());
-
             Program.ManageState(VendingMachineStateEnum.Sold);
-
             textBoxVMStateViewer.Text = (Program.programState.ToString());
-
         }
 
         //INVENTORY
         private void button5_Click(object sender, EventArgs e)
         {
-
             string strAllInventory = "";
 
             foreach (var inventory in myInventoryList)
@@ -192,7 +169,6 @@ namespace VendingMachineCsharp
             List<PurchaseTransactions> myPurchaseTransactionsList;
 
             myPurchaseTransactionsService = new PurchaseTransactionsService();
-
             myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
 
             Program.ManageState(Program.programState);
@@ -213,11 +189,13 @@ namespace VendingMachineCsharp
 
         }
 
+        //Vending Machine Viewer
         private void textBoxVMViewer_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        //StateViewer
         private void textBoxVMStateViewer_TextChanged(object sender, EventArgs e)
         {
 

@@ -11,22 +11,23 @@ namespace VendingMachineCsharp
     {
         public static VendingMachine myVendingMachine;
 
-        public static Inventory myInventory;
-
         public static InventoryService myInventoryService;
 
         public static VendingMachineStateEnum programState;
 
+        //Handle State
         public static void ManageState(VendingMachineStateEnum currentState)
         {
             Program.programState = currentState;
 
             Form1.ActiveForm.Controls["textBoxVMStateViewer"].Text = Program.programState.ToString();
 
+            //Cases for Vending Machine State
             switch (currentState)
             {
                 case VendingMachineStateEnum.NoQuarter:
                     Form1.ActiveForm.Controls["button1"].Enabled = true; //Insrt
+
                     Form1.ActiveForm.Controls["button2"].Enabled = false; //Eject
 
                     Form1.ActiveForm.Controls["button3"].Enabled = false; //Sprite
@@ -37,8 +38,10 @@ namespace VendingMachineCsharp
 
                     Form1.ActiveForm.Controls["button6"].Enabled = true; //Purchase Transaction
                     break;
+
                 case VendingMachineStateEnum.Sold:
                     Form1.ActiveForm.Controls["button1"].Enabled = true; //Insrt
+
                     Form1.ActiveForm.Controls["button2"].Enabled = false; //Eject
 
                     Form1.ActiveForm.Controls["button3"].Enabled = false; //Sprite
@@ -49,65 +52,63 @@ namespace VendingMachineCsharp
 
                     Form1.ActiveForm.Controls["button6"].Enabled = true; //Purchase Transaction
                     break;
+
                 case VendingMachineStateEnum.HasQuarter:
                     Form1.ActiveForm.Controls["button1"].Enabled = true; //Insrt
+
                     Form1.ActiveForm.Controls["button2"].Enabled = true; //Eject
 
-                    //if CheckInventory("Sprite") then {
                     if (GetInventory("Sprite")>0)
-                    { 
-                        Form1.ActiveForm.Controls["button3"].Enabled = true;
+                    {
+                        Form1.ActiveForm.Controls["button3"].Enabled = true; //Sprite
                         Form1.ActiveForm.Controls["button3"].Text = "Sprite" + Environment.NewLine + "(" + GetInventory("Sprite") + ")"; //Sprite
 
                     }
                     else
                     {
-                        Form1.ActiveForm.Controls["button3"].Enabled = false;
+                        Form1.ActiveForm.Controls["button3"].Enabled = false; //Sprite
                         Form1.ActiveForm.Controls["button3"].Text = "Sprite" + Environment.NewLine + "(" +  "0" + ")"; //Sprite
                     }
 
-                    //if CheckInventory("coke") then {
                     if (GetInventory("Coke")>0)
                     {
-                        Form1.ActiveForm.Controls["button4"].Enabled = true;
+                        Form1.ActiveForm.Controls["button4"].Enabled = true; //Coke
                         Form1.ActiveForm.Controls["button4"].Text = "Coke" + Environment.NewLine + "(" + GetInventory("Coke") + ")"; //Coke
-
                     }
                     else
                     {
-                        Form1.ActiveForm.Controls["button4"].Enabled = false;
+                        Form1.ActiveForm.Controls["button4"].Enabled = false; //Coke
                         Form1.ActiveForm.Controls["button4"].Text = "Coke" + Environment.NewLine + "(" + "0" + ")"; //Coke
-
                     }
 
                     Form1.ActiveForm.Controls["button6"].Enabled = true; //Purchase Transaction
                     break;
-                case VendingMachineStateEnum.SoldOut:   //Sold out means both product is sold out
 
+                case VendingMachineStateEnum.SoldOut:   //Sold out means both product is sold out
                     if (GetInventory("Sprite")>0)
                     {
-                        Form1.ActiveForm.Controls["button3"].Enabled = true;
+                        Form1.ActiveForm.Controls["button3"].Enabled = true; //Sprite
                         Form1.ActiveForm.Controls["button3"].Text = "Sprite" + Environment.NewLine + "(" + GetInventory("Sprite") + ")"; //Sprite
                     }
                     else
                     {
-                        Form1.ActiveForm.Controls["button3"].Enabled = false;
+                        Form1.ActiveForm.Controls["button3"].Enabled = false; //Sprite
                         Form1.ActiveForm.Controls["button3"].Text = "Sprite" + Environment.NewLine + "(" + "0" + ")"; //Sprite
                     }
 
                     if (GetInventory("Coke")>0)
                     {
-                        Form1.ActiveForm.Controls["button4"].Enabled = true;
+                        Form1.ActiveForm.Controls["button4"].Enabled = true; //Coke
                         Form1.ActiveForm.Controls["button4"].Text = "Coke" + Environment.NewLine + "(" + GetInventory("Coke") + ")"; //Coke
-
                     }
                     else
                     {
-                        Form1.ActiveForm.Controls["button4"].Enabled = false;
+                        Form1.ActiveForm.Controls["button4"].Enabled = false; //Coke
                         Form1.ActiveForm.Controls["button4"].Text = "Coke" + Environment.NewLine + "(" + "0" + ")"; //Coke
                     }
 
                     Form1.ActiveForm.Controls["button1"].Enabled = false; //Insrt
+
                     Form1.ActiveForm.Controls["button2"].Enabled = false; //Eject
 
                     Form1.ActiveForm.Controls["button3"].Enabled = false; //Sprite
@@ -120,8 +121,8 @@ namespace VendingMachineCsharp
                     break;
             }
             
-            if ((Form1.ActiveForm.Controls["Button4"].Text == "Coke" + Environment.NewLine + "(" + 0 + ")")
-                       && (Form1.ActiveForm.Controls["Button3"].Text == "Sprite" + Environment.NewLine + "(" + 0 + ")"))
+            if ((Form1.ActiveForm.Controls["Button4"].Text == "Coke" + Environment.NewLine + "(" + 0 + ")") && 
+                (Form1.ActiveForm.Controls["Button3"].Text == "Sprite" + Environment.NewLine + "(" + 0 + ")"))
             {
                 Form1.ActiveForm.Controls["button1"].Enabled = false; //Insrt
                 Program.programState = VendingMachineStateEnum.SoldOut;
@@ -132,6 +133,7 @@ namespace VendingMachineCsharp
             }
         }
 
+        //Check Inventorys Qty Amount
         public static int GetInventory(string currentProduct)
         {
             List<Inventory> myInventoryList;
@@ -146,7 +148,6 @@ namespace VendingMachineCsharp
                     return inventory.Qty;
                 }
             }
-        
             return 0;
         }
 

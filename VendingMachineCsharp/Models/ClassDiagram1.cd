@@ -3,7 +3,7 @@
   <Class Name="VendingMachineCsharp.VendingMachine">
     <Position X="3.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAAAACAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VendingMachine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Enum Name="VendingMachineCsharp.VendingMachineStateEnum">
-    <Position X="6.25" Y="4" Width="1.5" />
+    <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAABAAAIAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>VendingMachineStateEnum.cs</FileName>

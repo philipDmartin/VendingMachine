@@ -8,8 +8,9 @@ namespace VendingMachineCsharp.Repositories
 {
     public class PurchaseTransactionsService
     {
+        //Connection to SQL Database
         private readonly string _connectionString;
-        public PurchaseTransactionsService()//IConfiguration configuration)
+        public PurchaseTransactionsService()
         {
             _connectionString = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
         }
@@ -19,6 +20,7 @@ namespace VendingMachineCsharp.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
+        //Get All
         public List<PurchaseTransactions> GetAll()
         {
             using (var conn = Connection)
@@ -64,6 +66,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
+        //Update
         public void Update(PurchaseTransactions type)
         {
             using (var conn = Connection)
@@ -90,6 +93,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
+        //Add
         public void Add(PurchaseTransactions type)
         {
             using (var conn = Connection)

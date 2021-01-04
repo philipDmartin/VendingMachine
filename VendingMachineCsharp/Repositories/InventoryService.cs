@@ -8,11 +8,11 @@ namespace VendingMachineCsharp.Repositories
 {
     public class InventoryService
     {
+        //Connection to SQL Database
         private readonly string _connectionString;
         public InventoryService()
         {
             _connectionString = "server=localhost\\SQLExpress;database=VendingMachine;integrated security=true;";
-
         }
         
         public SqlConnection Connection
@@ -20,6 +20,7 @@ namespace VendingMachineCsharp.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
+        //Get All
         public List<Inventory> GetAll()
         {
             using (var conn = Connection)
@@ -40,7 +41,6 @@ namespace VendingMachineCsharp.Repositories
                     {
                         var type = new Inventory()
                         {
-                            //Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Qty = reader.GetInt32(reader.GetOrdinal("Qty")),
                             Product = new Product
                             {
@@ -58,6 +58,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
+        //Get By Id
         public Inventory Get(int id)
         {
             using (var conn = Connection)
@@ -97,6 +98,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
+        //Update
         public void Update(Inventory type)
         {
             using (var conn = Connection)
@@ -114,21 +116,6 @@ namespace VendingMachineCsharp.Repositories
                     cmd.Parameters.AddWithValue("@qty", type.Qty);
                     cmd.Parameters.AddWithValue("@productId", type.ProductId);
                     cmd.Parameters.AddWithValue("@vendingMachineId", type.VendingMachineId);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void Delete(int id)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "DELETE FROM Inventory WHERE Id = @id";
-                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }
