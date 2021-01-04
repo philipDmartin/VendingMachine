@@ -22,8 +22,8 @@ namespace VendingMachineCsharp
         InventoryService myInventoryService;
         List<Inventory> myInventoryList;
 
-        PurchaseTransactionsService myPurchaseTransactionsService;
-        List<PurchaseTransactions> myPurchaseTransactionsList;
+        //PurchaseTransactionsService myPurchaseTransactionsService;
+        //List<PurchaseTransactions> myPurchaseTransactionsList;
 
         public Form1()
         {
@@ -37,9 +37,8 @@ namespace VendingMachineCsharp
             myInventoryList = myInventoryService.GetAll();
             //myInventoryList = myInventoryRepository.Delete(int);
 
-            myPurchaseTransactionsService = new PurchaseTransactionsService();
-            myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
-            //myPurchaseTransactionsList = myPurchaseTransactionsService.Add(PurchaseTransactions);
+            //myPurchaseTransactionsService = new PurchaseTransactionsService();
+            //myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
 
             textBoxVMViewer.Text = ("Please Inerst Quarter");
             textBoxVMStateViewer.Text = ("Your Current State");
@@ -92,33 +91,40 @@ namespace VendingMachineCsharp
         //private int i;
         private void button3_Click(object sender, EventArgs e)
         {
+            InventoryService myInventoryService;
+            Inventory mySpriteInventory;
+
+            PurchaseTransactionsService myPurchaseTransactionsService;
+            PurchaseTransactions myPurchaseTransactions;
+
+            myInventoryService = new InventoryService();
+            
+            myPurchaseTransactionsService = new PurchaseTransactionsService();
+            myPurchaseTransactions = new PurchaseTransactions();
+
+            myPurchaseTransactions.PurchaseTotal = 1; //1 is a quarter
+            myPurchaseTransactions.ProductId = 1; //Id for sprite
+            myPurchaseTransactions.PurchaseQty = 1;
+            myPurchaseTransactions.Time = DateTime.Now;
+            myPurchaseTransactions.VendingMachineId = 1; //Id for Vh1
+
+            mySpriteInventory = myInventoryService.Get(1);
+
+            //Decrement inventory qty 
+            mySpriteInventory.Qty = (mySpriteInventory.Qty - 1);
+
+            //Start a C# transaction later
+
+            myPurchaseTransactionsService.Add(myPurchaseTransactions);
+            myInventoryService.Update(mySpriteInventory);
+
+            //End C# transaction here
+
             textBoxVMViewer.Text = ("You Have Selected Sprite, Now Despensing");
 
             textBoxVMStateViewer.Text = (Program.programState.ToString());
-
             Program.ManageState(VendingMachineStateEnum.Sold);
-
             textBoxVMStateViewer.Text = (Program.programState.ToString());
-
-            //i--;
-
-            //1.DECREMENT QTY NUMBER BY 1 WHEN BUTTON CLICKED
-
-            //string qtyInventory = "";
-
-            //foreach (var inventory in myInventoryList)
-            //{
-            //    qtyInventory += --inventory.Qty;
-
-            //}
-
-            //textBoxVMViewer.Text = qtyInventory.ToString();
-
-            //textBoxVMStateViewer.Text = i.ToString();
-
-            //2.ADD A NEW TRANSACTION WHEN BUTTON CLICKED
-
-            //myPurchaseTransactionsList.Add(PurchaseTransactions type);
         }
 
         //COKE
@@ -152,11 +158,18 @@ namespace VendingMachineCsharp
         //PURCHASE TRANSACTIONS
         private void button6_Click(object sender, EventArgs e)
         {
+            PurchaseTransactionsService myPurchaseTransactionsService;
+            List<PurchaseTransactions> myPurchaseTransactionsList;
+
+            myPurchaseTransactionsService = new PurchaseTransactionsService();
+
+            myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
+
             string strAllPurchaseTransactions = "";
 
             foreach (var purchaseTransactions in myPurchaseTransactionsList)
             {
-                strAllPurchaseTransactions += "Quarters Amount" + " " + purchaseTransactions.PurchaseTotal + ", " + "Poduct" + " " + purchaseTransactions.Product.Name + ", " + "Qty" + " " + purchaseTransactions.PurchaseQty + ", " + "Timestamp" + " " + purchaseTransactions.Time + ", " + "Machine" + " " + purchaseTransactions.VendingMachine.Name;
+                strAllPurchaseTransactions += "Quarters Amount:" + " " + purchaseTransactions.PurchaseTotal + ", " + "Poduct:" + " " + purchaseTransactions.Product.Name + ", " + "Qty:" + " " + purchaseTransactions.PurchaseQty + ", " + "Timestamp:" + " " + purchaseTransactions.Time + ", " + "Machine:" + " " + purchaseTransactions.VendingMachine.Name;
                 strAllPurchaseTransactions += Environment.NewLine;
             }
 

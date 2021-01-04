@@ -58,6 +58,45 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
+        public Inventory Get(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT
+                              Id,
+                              Qty,  
+                              ProductId,
+                              VendingMachineId
+                        FROM Inventory i
+                        WHERE Id = @id;";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Inventory type = null;
+                    if (reader.Read())
+                    {
+                        type = new Inventory()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Qty = reader.GetInt32(reader.GetOrdinal("Qty")),
+                            ProductId = reader.GetInt32(reader.GetOrdinal("ProductId")),
+                            VendingMachineId = reader.GetInt32(reader.GetOrdinal("VendingMachineId"))
+                        };
+                    }
+
+                    reader.Close();
+
+                    return type;
+                }
+            }
+        }
+
         public void Update(Inventory type)
         {
             using (var conn = Connection)
@@ -68,11 +107,12 @@ namespace VendingMachineCsharp.Repositories
                     cmd.CommandText = @"
                         UPDATE Inventory 
                            SET Qty = @qty, 
-                               Product = @product
+                               ProductId = @productId,
                                VendingMachineId = @vendingMachineId
                          WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", type.Id);
                     cmd.Parameters.AddWithValue("@qty", type.Qty);
-                    cmd.Parameters.AddWithValue("@product", type.Product);
+                    cmd.Parameters.AddWithValue("@productId", type.ProductId);
                     cmd.Parameters.AddWithValue("@vendingMachineId", type.VendingMachineId);
 
                     cmd.ExecuteNonQuery();

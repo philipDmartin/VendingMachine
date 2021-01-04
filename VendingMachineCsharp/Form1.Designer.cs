@@ -52,7 +52,7 @@ namespace VendingMachineCsharp
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(1236, 426);
+            this.button2.Location = new System.Drawing.Point(1236, 456);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(227, 46);
             this.button2.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace VendingMachineCsharp
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(653, 752);
+            this.button3.Location = new System.Drawing.Point(642, 752);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 139);
             this.button3.TabIndex = 2;
@@ -74,7 +74,7 @@ namespace VendingMachineCsharp
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(886, 752);
+            this.button4.Location = new System.Drawing.Point(1012, 752);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(135, 139);
             this.button4.TabIndex = 3;
@@ -94,12 +94,11 @@ namespace VendingMachineCsharp
             // 
             // button6
             // 
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(1205, 798);
+            this.button6.Location = new System.Drawing.Point(1465, 1295);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(300, 46);
             this.button6.TabIndex = 5;
-            this.button6.Text = "Purchase Transactions";
+            this.button6.Text = "Transaction History";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
