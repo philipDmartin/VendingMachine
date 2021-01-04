@@ -130,6 +130,36 @@ namespace VendingMachineCsharp
         //COKE
         private void button4_Click(object sender, EventArgs e)
         {
+            InventoryService myInventoryService;
+            Inventory myCokeInventory;
+
+            PurchaseTransactionsService myPurchaseTransactionsService;
+            PurchaseTransactions myPurchaseTransactions;
+
+            myInventoryService = new InventoryService();
+
+            myPurchaseTransactionsService = new PurchaseTransactionsService();
+            myPurchaseTransactions = new PurchaseTransactions();
+
+            myPurchaseTransactions.PurchaseTotal = 1; //1 is a quarter
+            myPurchaseTransactions.ProductId = 2; //Id for coke
+            myPurchaseTransactions.PurchaseQty = 1;
+            myPurchaseTransactions.Time = DateTime.Now;
+            myPurchaseTransactions.VendingMachineId = 1; //Id for Vh1
+
+            myCokeInventory = myInventoryService.Get(2);
+
+            //Decrement inventory qty 
+            myCokeInventory.Qty = (myCokeInventory.Qty - 1);
+
+            //Start a C# transaction later
+
+            myPurchaseTransactionsService.Add(myPurchaseTransactions);
+            myInventoryService.Update(myCokeInventory);
+
+            //End C# transaction here
+
+
             textBoxVMViewer.Text = ("You Have Selected Coke, Now Despensing");
 
             textBoxVMStateViewer.Text = (Program.programState.ToString());
@@ -164,6 +194,8 @@ namespace VendingMachineCsharp
             myPurchaseTransactionsService = new PurchaseTransactionsService();
 
             myPurchaseTransactionsList = myPurchaseTransactionsService.GetAll();
+
+            Program.ManageState(Program.programState);
 
             string strAllPurchaseTransactions = "";
 

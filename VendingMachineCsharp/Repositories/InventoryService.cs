@@ -28,11 +28,11 @@ namespace VendingMachineCsharp.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT
-                                               Qty,  
-                                               p.[Name] AS ProductName,
-                                               VendingMachineId
-                                        FROM Inventory i
-                                        JOIN Product p ON p.Id = i.Id;";
+                                            Qty,  
+                                            p.[Name] AS ProductName,
+                                            VendingMachineId
+                                      FROM Inventory i
+                                      JOIN Product p ON i.ProductId = p.Id";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<Inventory>();

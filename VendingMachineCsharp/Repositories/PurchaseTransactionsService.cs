@@ -27,14 +27,14 @@ namespace VendingMachineCsharp.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT 
-                                               PurchaseTotal, 
-                                               PurchaseQty, 
-                                               Time, 
-                                               p.[Name] AS ProductName, 
-                                               v.[Name] AS VendingMachineName 
-                                        FROM PurchaseTransactions pt
-                                        JOIN Product p ON p.Id = pt.Id
-                                        JOIN VendingMachine v ON v.Id = pt.Id";
+                                        PurchaseTotal, 
+                                        PurchaseQty, 
+                                        Time, 
+                                        p.[Name] AS ProductName,
+                                        v.[Name] AS VendingMachineName 
+                                    FROM PurchaseTransactions pt
+                                    JOIN Product p ON pt.ProductId = p.Id
+                                    JOIN VendingMachine v ON pt.VendingMachineId = v.Id";
 
                     var reader = cmd.ExecuteReader();
                     var types = new List<PurchaseTransactions>();
@@ -42,7 +42,6 @@ namespace VendingMachineCsharp.Repositories
                     {
                         var type = new PurchaseTransactions()
                         {
-                            //Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             PurchaseTotal = reader.GetInt32(reader.GetOrdinal("PurchaseTotal")),
                             PurchaseQty = reader.GetInt32(reader.GetOrdinal("PurchaseQty")),
                             Time = reader.GetDateTime(reader.GetOrdinal("Time")),
