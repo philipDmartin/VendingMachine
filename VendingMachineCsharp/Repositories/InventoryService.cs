@@ -20,7 +20,7 @@ namespace VendingMachineCsharp.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
-        //Get All
+        //Get All Controller
         public List<Inventory> GetAll()
         {
             using (var conn = Connection)
