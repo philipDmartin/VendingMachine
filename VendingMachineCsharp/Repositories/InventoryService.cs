@@ -58,7 +58,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
-        //Get By Id
+        //Get By Id Controller
         public Inventory Get(int id)
         {
             using (var conn = Connection)
