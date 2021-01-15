@@ -7,8 +7,11 @@ namespace VendingMachineCsharp
     public enum VendingMachineStateEnum
     {
         NoQuarter,
+
         HasQuarter,
+
         SoldOut,
+
         Sold
     }
 }
