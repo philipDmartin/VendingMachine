@@ -98,7 +98,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
-        //Update
+        //Update Controller
         public void Update(Inventory type)
         {
             using (var conn = Connection)
