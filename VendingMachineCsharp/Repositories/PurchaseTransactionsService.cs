@@ -20,7 +20,7 @@ namespace VendingMachineCsharp.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
-        //Get All
+        //Get All Controller
         public List<PurchaseTransactions> GetAll()
         {
             using (var conn = Connection)
@@ -66,7 +66,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
-        //Update
+        //Update Controller
         public void Update(PurchaseTransactions type)
         {
             using (var conn = Connection)
@@ -93,7 +93,7 @@ namespace VendingMachineCsharp.Repositories
             }
         }
 
-        //Add
+        //Add Controller
         public void Add(PurchaseTransactions type)
         {
             using (var conn = Connection)
